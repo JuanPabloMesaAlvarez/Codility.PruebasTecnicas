@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Code Sample</title>
+</head>
+<body>
+    @model Tailorsoft.DataModel
+    <table>
+        <tr>
+            <th>Product Name</th>
+            <th>Total</th>
+        </tr>
+        @foreach (var product in Model.Products)
+        {
+            var total = 0;
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => product.Name)
+                </td>
+                <td>
+                    @foreach (var order in Model.Orders.Where(ord => ord.Items.Where(items => items.ProductId == product.Id).Count() > 0))
+                    {
+                        foreach (var orderIt in order.Items.Where(items => items.ProductId == product.Id))
+                        {
+                            total += orderIt.Quantity;
+                        }
+                    }
+                    @(total * product.Price)
+                </td>
+            </tr>
+        }
+    </table>
+</body>
+</html>

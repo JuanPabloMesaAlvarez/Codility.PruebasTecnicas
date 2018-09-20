@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Code Sample</title>
+</head>
+<body>
+    @model IEnumerable<Tailorsoft.ResultViewModel>
+    <table>
+        <tr>
+            <th>Product Name</th>
+            <th>Total</th>
+        </tr>
+        @foreach (var result in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(resultItem => result.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(resultItem => result.Total)
+                </td>
+            </tr>
+        }
+    </table>
+</body>
+</html>
